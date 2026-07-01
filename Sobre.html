@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,3 +34,40 @@
   </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo AJAX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="btn">Carregar dados</button>
+  <div id="resultado"></div>
+
+  <script>
+    document.getElementById("btn").addEventListener("click", function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://api.exemplo.com/dados", true);
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var dados = JSON.parse(xhr.responseText);
+          document.getElementById("resultado").innerHTML = "Nome: " + dados.nome;
+        } else {
+          document.getElementById("resultado").innerHTML = 
+            "Erro: não foi possível obter os dados (status " + xhr.status + ")";
+        }
+      };
+
+      xhr.onerror = function() {
+        document.getElementById("resultado").innerHTML = 
+          "Erro: falha na comunicação com o servidor/banco de dados.";
+      };
+
+      xhr.send();
+    });
+  </script>
+</body>
+</html>
+>>>>>>> 4a6b0eb99a77d32899316661f2ac158b81110551
