@@ -8,6 +8,7 @@
 <body>
     <h1>Cadastro de Usuário</h1>
 
+    <!-- Formulário -->
     <form action="" method="post">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required><br><br>
@@ -18,8 +19,9 @@
         <button type="submit">Enviar</button>
     </form>
 
+    <!-- PHP embutido -->
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $servername = "localhost";
         $username = "usuario";
         $password = "senha";
@@ -27,23 +29,21 @@
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
+        // Se a conexão falhar, mostra erro após envio
         if ($conn->connect_error) {
             echo "<p style='color:red;'>Erro de conexão: " . $conn->connect_error . "</p>";
         } else {
             $nome = $_POST['nome'];
             $email = $_POST['email'];
 
-            // Usando prepared statement para segurança
-            $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
-            $stmt->bind_param("ss", $nome, $email);
+            $sql = "INSERT INTO usuarios (nome, email) VALUES ('$nome', '$email')";
 
-            if ($stmt->execute()) {
+            if ($conn->query($sql) === TRUE) {
                 echo "<p style='color:green;'>Cadastro realizado com sucesso!</p>";
             } else {
-                echo "<p style='color:red;'>Erro ao cadastrar: " . $stmt->error . "</p>";
+                echo "<p style='color:red;'>Erro ao cadastrar: " . $conn->error . "</p>";
             }
 
-            $stmt->close();
             $conn->close();
         }
     }
