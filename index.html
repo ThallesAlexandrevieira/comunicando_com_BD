@@ -20,20 +20,23 @@
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Configuração da conexão
         $servername = "localhost";
-        $username = "usuario";
-        $password = "senha";
-        $dbname = "meu_banco";
+        $username   = "root";   // ajuste conforme seu MySQL
+        $password   = "";       // ajuste conforme seu MySQL
+        $dbname     = "meu_banco";
 
+        // Criando conexão
         $conn = new mysqli($servername, $username, $password, $dbname);
 
+        // Verificando conexão
         if ($conn->connect_error) {
             echo "<p style='color:red;'>Erro de conexão: " . $conn->connect_error . "</p>";
         } else {
-            $nome = $_POST['nome'];
+            $nome  = $_POST['nome'];
             $email = $_POST['email'];
 
-            // Usando prepared statement para segurança
+            // Usando prepared statement
             $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
             $stmt->bind_param("ss", $nome, $email);
 

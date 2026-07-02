@@ -1,9 +1,9 @@
 <?php
-// Conexão com o banco de dados
+// Configuração da conexão
 $servername = "localhost";
 $username   = "root";
 $password   = "";
-$dbname     = "seu_banco";
+$dbname     = "meu_banco";
 
 // Criando conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome  = $_POST['nome'];
     $email = $_POST['email'];
 
-    // Usando prepared statement para segurança
+    // Usando prepared statement
     $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
     $stmt->bind_param("ss", $nome, $email);
 
@@ -33,3 +33,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
