@@ -17,39 +17,6 @@
 
         <button type="submit">Enviar</button>
     </form>
-   <!-- <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Configuração da conexão
-        $servername = "localhost";
-        $username   = "root";   // ajuste conforme seu MySQL
-        $password   = "";       // ajuste conforme seu MySQL
-        $dbname     = "meu_banco";
-
-        // Criando conexão
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificando conexão
-        if ($conn->connect_error) {
-            echo "<p style='color:red;'>Erro de conexão: " . $conn->connect_error . "</p>";
-        } else {
-            $nome  = $_POST['nome'];
-            $email = $_POST['email'];
-
-            // Usando prepared statement
-            $stmt = $conn->prepare("INSERT INTO usuarios (nome, email) VALUES (?, ?)");
-            $stmt->bind_param("ss", $nome, $email);
-
-            if ($stmt->execute()) {
-                echo "<p style='color:green;'>Cadastro realizado com sucesso!</p>";
-            } else {
-                echo "<p style='color:red;'>Erro ao cadastrar: " . $stmt->error . "</p>";
-            }
-
-            $stmt->close();
-            $conn->close();
-        }
-    }
-    ?>-->
-</body>
+   </body>
 </html>
 
