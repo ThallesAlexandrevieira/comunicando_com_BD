@@ -5,13 +5,13 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #74ebd5, #060a17);
+  background: linear-gradient(135deg, #f0f3f2, #060a17);
   font-family: Arial, sans-serif;
  }
 form{
   display: flex;
   flex-direction: column;
-  gap: 0px; 
+  /* gap: 0px;  */
 }
 /* Estilo do botão */
 #btn {
